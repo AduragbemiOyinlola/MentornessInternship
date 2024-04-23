@@ -33,7 +33,29 @@ ORDER BY condition;
 - **view_name**: the name for the view.
 
 ---
+## **WORKING WITH A VIEW**
+
+After creating a view, one can carryout analysis work on the created view. To see all data in the created view
+
+```
+SELECT * FROM view_name
+```
+
+On getting the data from the view, analysis on the created view can start which includes but not limited to getting the MIN, MAX, AVG, SUM, COUNT, STDEV...
+
+---
+
 ## **HOW TO DELETE A VIEW**
+While there is a syntax for creating views, there is also a syntax for deleting views. Below is the syntax for deleting view.
+
+```
+DROP VIEW view_name;
+```
+
+
+---
+
+## **USES OF VIEW**
 
 ---
 
