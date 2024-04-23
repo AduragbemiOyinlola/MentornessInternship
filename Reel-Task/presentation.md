@@ -14,19 +14,27 @@ View defines a customized query that retrieves data from one or more tables, and
 
 ---
 
-A view is not a real table with data instead, it is a virtual table created from a SELECT query (can be thought of as a reflection) and this shows a subset of data from one of more table.
+A view is not a real table with data instead, it is a virtual table created from a **SELECT** query (can be thought of as a reflection) and this shows a subset of data from one of more table.
 
 ---
 
 ## **How to Create a View**
 
-Views in SQL be created using the syntax below
+Below is a simple syntax of how to create _Views_ in SQL
 
 ```
 CREATE VIEW view_name AS
 SELECT column1, column2...
 FROM table
+WHERE condition
+ORDER BY condition;
 ```
+- **CREATE VIEW**: this is the statement used in creating the view.
+- **view_name**: the name for the view.
+
+---
+## **HOW TO DELETE A VIEW**
+
 ---
 
 reel structure
