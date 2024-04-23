@@ -20,7 +20,7 @@ A view is not a real table with data instead, it is a virtual table created from
 
 ## **How to Create a View**
 
-Below is a simple syntax of how to create _Views_ in SQL
+Below is a simple syntax for creating _Views_ in SQL from a single table.
 
 ```
 CREATE VIEW view_name AS
@@ -33,6 +33,25 @@ ORDER BY condition;
 - **view_name**: the name for the view.
 
 ---
+
+Syntax for creating a _View_ from two (2) table
+
+```
+CREATE VIEW view_name AS
+SELECT column1, column2...
+FROM table1
+JOIN table2 ON table1.id = table2
+WHERE condition
+ORDER BY condition;
+```
+
+- **JOIN**: keyword for combining tables.
+- **ON**: clause used with the JOIN keyword to combine tables.
+
+NB: A view can be created from one or more tables.
+
+---
+
 ## **WORKING WITH A VIEW**
 
 After creating a view, one can carryout analysis work on the created view. To see all data in the created view
@@ -58,9 +77,3 @@ DROP VIEW view_name;
 ## **USES OF VIEW**
 
 ---
-
-reel structure
-- what is view?
-- how to create a view
-- deleting a view
-- usefulness of view
