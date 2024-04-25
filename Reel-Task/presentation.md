@@ -1,5 +1,6 @@
 ---
 marp: true
+theme: gaia
 paginate: true
 ---
 
@@ -8,7 +9,7 @@ paginate: true
 ---
 ## **What is a View in SQL?**
 
-A _view_ is a virtual table whose contens are obtained from an existing table or tables in a database that are derived from the result of a **SELECT** query.
+A view is a virtual table whose contents are obtained from an existing table or tables in a database. The contents of a view are derived from the result of a SELECT query.
 
 View defines a customized query that retrieves data from one or more tables, and represents the data as if it was coming from a single source.
 
@@ -29,6 +30,13 @@ ORDER BY condition;
 ```
 - **CREATE VIEW**: this is the statement used in creating the view.
 - **view_name**: the name for the view.
+
+---
+
+## **Example: Creating a View Using a Single Table**
+
+I will be using the ***Parch and Posey*** database for this example.
+
 
 ---
 
