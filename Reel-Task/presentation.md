@@ -55,7 +55,17 @@ ORDER BY condition;
 
 ![image width:1200](./orders2016.png)
 
+From the image above, I created a view named _Orders2016_ which contains all fields from the orders table where the year the order was made is 2016. 
 
+Let's see what the view looks like.
+
+---
+<!-- _class: invert -->
+![image width:1200](simplequery.png)
+
+The query above is to get all the flieds from the _Orders2016_ view and retrievinf the first five rows on the data.
+
+![image width:1200](./simpleoutput.png)
 
 ---
 
@@ -74,6 +84,10 @@ ORDER BY condition;
 - **ON**: clause used with the JOIN keyword to combine tables.
 
 NB: A view can be created from one or more tables.
+
+---
+
+
 
 ---
 
