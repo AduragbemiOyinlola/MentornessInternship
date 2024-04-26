@@ -53,7 +53,7 @@ ORDER BY condition;
 
 ## **Example of a Simple View**
 
-![image width:1200](./orders2016.png)
+![image width:1150](./orders2016.png)
 
 From the image above, I created a view named _Orders2016_ which contains all fields from the orders table where the year the order was made is 2016. 
 
@@ -61,11 +61,11 @@ Let's see what the view looks like.
 
 ---
 <!-- _class: invert -->
-![image width:1200](simplequery.png)
+![image width:1150](simplequery.png)
 
 The query above is to get all the flieds from the _Orders2016_ view and retrievinf the first five rows on the data.
 
-![image width:1200](./simpleoutput.png)
+![image width:1150](./simpleoutput.png)
 
 ---
 
@@ -83,14 +83,29 @@ ORDER BY condition;
 - **JOIN**: keyword for combining tables.
 - **ON**: clause used with the JOIN keyword to combine tables.
 
-NB: A view can be created from one or more tables.
+A view can be created from one or more tables.
 
 ---
 
+<!-- _class: invert -->
+![image width:1150 height:200](./multipletab.png)
 
+For this example, I created a view named _reps_region_, retrieved the name of the Sales representative located in the _Midwest_ region (the WHERE clause). 
+
+To see what the data in the _reps_region_ view looks like.
+
+![image width:1150](./reps_region.png)
 
 ---
 
+![bg right:45% height:600](./multipleoutput.png)
+
+After running the query above it returns the output by the side.
+
+It shows that there are only nine sales representatives located in the **Midwest** region.
+
+---
+<!-- _class: invert -->
 ## **WORKING WITH A VIEW**
 
 After creating a view, one can carryout analysis work on the created view. To see all data in the created view
@@ -102,7 +117,6 @@ SELECT * FROM view_name;
 Upon retrieving data from the view, we can commence the analysis on the created view. This analysis encompasses various operations, including but not limited to calculating the **minimum**, **maximum**, **average**, **sum**, **count**, and **standard deviation**...
 
 ---
-<!-- _class: invert -->
 
 ## **HOW TO DELETE A VIEW**
 While there is a syntax for creating views, there is also a syntax for deleting views. Below is the syntax for deleting view.
