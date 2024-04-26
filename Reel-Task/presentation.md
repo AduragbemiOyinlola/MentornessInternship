@@ -26,7 +26,7 @@ The Parch and Posey database is a widely-used fictional database, serving as a t
 
 ---
 
-![bg width:660 height:600 right:50%](./erd.png) 
+![bg width:660 height:600 right:50%](./Images/erd.png) 
 
 ## **ENTITY RELATIONSHIP DIAGRAM </br>(ERD) FOR PARCH AND POSEY DATABASE**
 
@@ -53,7 +53,7 @@ ORDER BY condition;
 
 ## **Example of a Simple View**
 
-![image width:1150](./orders2016.png)
+![image width:1150](./Images/orders2016.png)
 
 From the image above, I created a view named _Orders2016_ which contains all fields from the orders table where the year the order was made is 2016. 
 
@@ -61,11 +61,11 @@ Let's see what the view looks like.
 
 ---
 <!-- _class: invert -->
-![image width:1150](simplequery.png)
+![image width:1150](./Images/simplequery.png)
 
 The query above is to get all the flieds from the _Orders2016_ view and retrievinf the first five rows on the data.
 
-![image width:1150](./simpleoutput.png)
+![image width:1150](./Images/simpleoutput.png)
 
 ---
 
@@ -88,17 +88,17 @@ A view can be created from one or more tables.
 ---
 
 <!-- _class: invert -->
-![image width:1150 height:200](./multipletab.png)
+![image width:1150 height:200](./Images/multipletab.png)
 
 For this example, I created a view named _reps_region_, retrieved the name of the Sales representative located in the _Midwest_ region (the WHERE clause). 
 
 To see what the data in the _reps_region_ view looks like.
 
-![image width:1150](./reps_region.png)
+![image width:1150](./Images/reps_region.png)
 
 ---
 
-![bg right:45% height:600](./multipleoutput.png)
+![bg right:45% height:600](./Images/multipleoutput.png)
 
 After running the query above it returns the output by the side.
 
