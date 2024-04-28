@@ -63,13 +63,13 @@ Let's see what the view looks like.
 <!-- _class: invert -->
 ![image width:1150](./Images/simplequery.png)
 
-The query above is to get all the flieds from the _Orders2016_ view and retrievinf the first five rows on the data.
+The query above is to get all the flieds from the _Orders2016_ view and retrieving the first five rows on the data.
 
 ![image width:1150](./Images/simpleoutput.png)
 
 ---
 
-Syntax for creating a _View_ from two (2) table
+Syntax for creating a _View_ from two (2) tables
 
 ```
 CREATE VIEW view_name AS
@@ -90,7 +90,7 @@ A view can be created from one or more tables.
 <!-- _class: invert -->
 ![image width:1150 height:200](./Images/multipletab.png)
 
-For this example, I created a view named _reps_region_, retrieved the name of the Sales representative located in the _Midwest_ region (the WHERE clause). 
+For this example, I created a view named _reps_region_, retrieved the names of the Sales representative located in the _Midwest_ region (the WHERE clause). 
 
 To see what the data in the _reps_region_ view looks like.
 
@@ -118,20 +118,39 @@ Upon retrieving data from the view, we can commence the analysis on the created 
 
 ---
 
+Using the previously created _Orders2016_, let's check the second half total of _standard, gloss_ and *poster* sold and *total_amt_usd* made.
+
+![image width:1150](./Images/viewwork.png)
+
+The image above demonstrates working with view, notice, after the FROM keyword comes the name of the view that was created earlier.
+
+---
+<!-- _class: invert -->
+
+Below is the result of running the query from the earlier page. The query returns the total unit of standard quantity, gloss quantity and poster quantity sold for the second half of the year. The last field of the output shows the total amount of money made in USD for the units sold in the second half of the year.
+
+![image width:1150](./Images/viewworkoutput.png)
+
+---
+
 ## **HOW TO DELETE A VIEW**
-While there is a syntax for creating views, there is also a syntax for deleting views. Below is the syntax for deleting view.
+As there is a syntax for creating views, there is also a syntax for deleting views. Below is the syntax for deleting view.
 
 ```
 DROP VIEW view_name;
 ```
 
----
+I decided to drop both views I created for explanation purposes.
 
+![image width:1150](./Images/dropview.png)
+
+---
+<!-- _class: invert -->
 ## **USES OF VIEW**
 
 - **Restricting data access**: 
     - Views provide an additional level of table security by restricting access to a predetermined set of rows and columns of a table.
-    - This can find use in database adminstrator technical interview, sensitive data can not be revealed to someone who is not an employee in a company.
+    - Useful in technical interviews for database administrator.
 - **Reusability**:
-    - Views allow us to store SQL queries in virtual containers (like virtual tables) within our database.Instead of repeatedly writing the same SELECT statements, we create a view once and reuse it.
+    - Instead of repeatedly writing the same SELECT statements, we create a view once and reuse it.
     - For example, if we commonly join multiple tables, we can create a view with the necessary logic. It saves time and reduces repetition.
