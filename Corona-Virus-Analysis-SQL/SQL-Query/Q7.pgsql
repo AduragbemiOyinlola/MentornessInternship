@@ -1,3 +1,4 @@
+-- Q7. Find most frequent value for confirmed, deaths, recovered each month 
 SELECT
     TO_CHAR(date, 'Month') AS "Month",
     MODE() WITHIN GROUP (ORDER BY confirmed) AS "MostFrequentConfirmed",
