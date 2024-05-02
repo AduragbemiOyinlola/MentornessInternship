@@ -3,7 +3,7 @@ marp: true
 theme: gaia
 ---
 <!-- _class: invert -->
-![bg right:55%](corona.jpeg)
+![bg right:55%](./Images/corona.jpeg)
 # **MENTORNESS INTERNSHIP PROJECT**
 
 ## **CORONA VIRUS ANALYSIS**
@@ -16,14 +16,14 @@ theme: gaia
 
 ### **OVERVIEW:**
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 The **CORONA VIRUS** pandemic has had a significant impact on public health and has created an urgent need for data-driven insights to understand the spread of the virus. 
 
 For this task, I will be analyzing the **CORONA VIRUS** dataset to find answers by writing **SQL** queries, derive meaningful insights and present my findings.
 
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 ### **DATASET:**
 The dataset contains 8 fields:
 
@@ -38,7 +38,7 @@ The dataset contains 8 fields:
 
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q1. Write a code to check NULL values
 
@@ -46,41 +46,39 @@ Q1. Write a code to check NULL values
 SELECT *
 FROM corona_data
 WHERE province IS NULL
-    OR countryregion IS NULL
-    OR latitude IS NULL
-    OR longitude IS NULL
-    OR date IS NULL
-    OR confirmed IS NULL
-    OR deaths IS NULL
+    OR countryregion IS NULL OR latitude IS NULL
+    OR longitude IS NULL OR date IS NULL
+    OR confirmed IS NULL OR deaths IS NULL
     OR recovered IS NULL;
 ```
 
+<br>
+<br>
+
+![image width:1015](./Images/q1.png)
+
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q2. If NULL values are present, update them with zeros for all columns.
 
 ```
 UPDATE corona_data
-SET province = 0,
-    countryregion = 0,
-    latitude = 0,
-    longitude = 0,
-    confirmed = 0,
-    deaths = 0,
+SET province = 0, countryregion = 0, latitude = 0, 
+    longitude = 0, confirmed = 0, deaths = 0,
     recovered = 0
-WHERE province IS NULL OR
-    countryregion IS NULL OR
-    latitude IS NULL OR
-    longitude IS NULL OR
-    confirmed IS NULL OR
-    deaths IS NULL OR
+WHERE province IS NULL OR countryregion IS NULL OR
+    latitude IS NULL OR longitude IS NULL OR 
+    confirmed IS NULL OR deaths IS NULL OR
     recovered IS NULL;
 ```
+
+![image width:1015](./Images/q2.png)
+
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q3. check total number of rows
 
@@ -88,10 +86,14 @@ Q3. check total number of rows
 SELECT COUNT(*)
 FROM coronavirus;
 ```
+<br>
+<br>
+
+![image width:1015](./Images/q3.png)
 
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q4. Check what is start_date and end_date
 
@@ -100,9 +102,14 @@ SELECT MIN(date) AS start_date, MAX(date) AS end_date
 FROM corona_data;
 ```
 
+<br>
+<br>
+
+![image width:1015](./Images/q4.png)
+
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q5. Number of month present in dataset
 
@@ -111,23 +118,38 @@ SELECT COUNT(DISTINCT EXTRACT(MONTH FROM date)) AS monthNumber
 FROM corona_data;
 ```
 
+<br>
+<br>
+
+![image width:1015](./Images/q1.png)
+
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q6. Find monthly average for confirmed, deaths, recovered
 
 ```
-SELECT TO_CHAR(date, 'Month') AS "Month", ROUND(AVG(confirmed)) AS "ConfirmedCases/Month",
-    ROUND(AVG(deaths)) AS "Deaths/Month", ROUND(AVG(recovered)) AS "Recovery/Month"
+SELECT 
+    TO_CHAR(date, 'Month') AS "Month", 
+    ROUND(AVG(confirmed)) AS "ConfirmedCases/Month",
+    ROUND(AVG(deaths)) AS "Deaths/Month", 
+    ROUND(AVG(recovered)) AS "Recovery/Month"
 FROM corona_data
 GROUP BY TO_CHAR(date, 'Month'), EXTRACT(MONTH FROM date)
 ORDER BY EXTRACT(MONTH FROM date);
 ```
 
 ---
+
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
+
+![image width:1015](./Images/q6.png)
+
+---
+<!-- _class: invert -->
+![bg left:10%](./Images/corona.jpeg)
 
 Q7. Find most frequent value for confirmed, deaths, recovered each month
 
@@ -141,10 +163,15 @@ FROM corona_data
 GROUP BY TO_CHAR(date, 'Month'), EXTRACT(MONTH FROM date)
 ORDER BY EXTRACT(MONTH FROM date);
 ```
+---
+<!-- _class: invert -->
+![bg left:10%](./Images/corona.jpeg)
+
+![image width:1015](./Images/q7.png)
 
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q8. Find minimum values for confirmed, deaths, recovered per year
 
@@ -155,9 +182,14 @@ FROM corona_data
 GROUP BY EXTRACT(YEAR FROM date);
 ```
 
+<br>
+<br>
+
+![image width:1015](./Images/q8.png)
+
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q9. Find maximum values of confirmed, deaths, recovered per year
 
@@ -168,23 +200,37 @@ FROM corona_data
 GROUP BY EXTRACT(YEAR FROM date);
 ```
 
+<br>
+<br>
+
+![image width:1015](./Images/q9.png)
+
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q10. The total number of case of confirmed, deaths, recovered each month
 
 ```
-SELECT TO_CHAR(date, 'Month') AS "Month", SUM(confirmed) AS "TotalConfirmedCases/Month",
-    SUM(deaths) AS "TotalDeaths/Month", SUM(recovered) AS "TotalRecovery/Month"
+SELECT 
+    TO_CHAR(date, 'Month') AS "Month", 
+    SUM(confirmed) AS "TotalConfirmedCases/Month",
+    SUM(deaths) AS "TotalDeaths/Month", 
+    SUM(recovered) AS "TotalRecovery/Month"
 FROM corona_data
 GROUP BY TO_CHAR(date, 'Month'), EXTRACT(MONTH FROM date)
 ORDER BY EXTRACT(MONTH FROM date);
 ```
 
 ---
+
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
+![image width:1015](./Images/q10.png)
+
+---
+<!-- _class: invert -->
+![bg left:10%](./Images/corona.jpeg)
 
 Q11. Check how corona virus spread out with respect to confirmed case (Eg.: total confirmed cases, their average, variance & STDEV)
 
@@ -197,9 +243,13 @@ SELECT
 FROM corona_data;
 ```
 
+<br>
+
+![image width:1015](./Images/q11.png)
+
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q12. Check how corona virus spread out with respect to death case per month (Eg.: total confirmed cases, their average, variance & STDEV)
 
@@ -211,9 +261,12 @@ SELECT
     ROUND(STDDEV(deaths), 2) AS "DeathsSpread"
 FROM corona_data;
 ```
+
+![image width:1015](./Images/q12.png)
+
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q13. Check how corona virus spread out with respect to recovered case (Eg.: total confirmed cases, their average, variance & STDEV)
 
@@ -226,9 +279,11 @@ SELECT
 FROM corona_data;
 ```
 
+![image width:1015](./Images/q13.png)
+
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q14. Find Country having highest number of the Confirmed case
 
@@ -240,29 +295,36 @@ ORDER BY confirmed DESC
 LIMIT 1;
 ```
 
+![image width:1015](./Images/q14.png)
+
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q15. Find Country having lowest number of the death case
 
 ```
-SELECT countryregion, MIN(deaths) AS "MaxConfirmedCases"
+SELECT countryregion, MIN(deaths) AS "MinDeath"
 FROM corona_data
 GROUP BY countryregion, deaths
 ORDER BY deaths
 LIMIT 1;
 ```
 
+![image width:1015](./Images/q15.png)
+
 ---
 <!-- _class: invert -->
-![bg left:10%](corona.jpeg)
+![bg left:10%](./Images/corona.jpeg)
 
 Q16. Find top 5 countries having highest recovered case
 
 ```
-SELECT countryregion, recovered
+SELECT countryregion, MAX(recovered) AS highest_recovered
 FROM corona_data
-ORDER BY recovered DESC
+GROUP BY countryregion
+ORDER BY highest_recovered DESC
 LIMIT 5;
 ```
+
+![image width:1015 height:350](./Images/q16.png)
