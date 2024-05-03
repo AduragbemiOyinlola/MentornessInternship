@@ -1,9 +1,11 @@
 ---
 marp: true
 theme: gaia
+paginate: true
 ---
 <!-- _class: invert -->
 ![bg right:55%](./Images/corona.jpeg)
+
 # **MENTORNESS INTERNSHIP PROJECT**
 
 ## **CORONA VIRUS ANALYSIS**
@@ -17,13 +19,15 @@ theme: gaia
 ### **OVERVIEW:**
 <!-- _class: invert -->
 ![bg left:10%](./Images/corona.jpeg)
+
 The **CORONA VIRUS** pandemic has had a significant impact on public health and has created an urgent need for data-driven insights to understand the spread of the virus. 
 
-For this task, I will be analyzing the **CORONA VIRUS** dataset to find answers by writing **SQL** queries, derive meaningful insights and present my findings.
+For this task, I will be analyzing the **CORONA VIRUS** dataset to find answers by writing **SQl (PostgreSQL)** queries, derive meaningful insights and present my findings.
 
 ---
 <!-- _class: invert -->
 ![bg left:10%](./Images/corona.jpeg)
+
 ### **DATASET:**
 The dataset contains 8 fields:
 
@@ -52,7 +56,6 @@ WHERE province IS NULL
     OR recovered IS NULL;
 ```
 
-<br>
 <br>
 
 ![image width:1015](./Images/q1.png)
@@ -114,14 +117,15 @@ FROM corona_data;
 Q5. Number of month present in dataset
 
 ```
-SELECT COUNT(DISTINCT EXTRACT(MONTH FROM date)) AS monthNumber
-FROM corona_data;
+SELECT EXTRACT(YEAR FROM date) AS "Year", 
+    COUNT(DISTINCT EXTRACT(MONTH FROM date)) AS "monthNumber"
+FROM corona_data
+GROUP BY EXTRACT(YEAR FROM date);
 ```
 
 <br>
-<br>
 
-![image width:1015](./Images/q1.png)
+![image width:1015](./Images/q5.png)
 
 ---
 <!-- _class: invert -->
@@ -131,21 +135,21 @@ Q6. Find monthly average for confirmed, deaths, recovered
 
 ```
 SELECT 
-    TO_CHAR(date, 'Month') AS "Month", 
-    ROUND(AVG(confirmed)) AS "ConfirmedCases/Month",
-    ROUND(AVG(deaths)) AS "Deaths/Month", 
-    ROUND(AVG(recovered)) AS "Recovery/Month"
+    EXTRACT(YEAR FROM date) AS "Year", TO_CHAR(date, 'Month') AS "Month", 
+    ROUND(AVG(confirmed), 2) AS "ConfirmedCases/Month",
+    ROUND(AVG(deaths), 2) AS "Deaths/Month", 
+    ROUND(AVG(recovered), 2) AS "Recovery/Month"
 FROM corona_data
-GROUP BY TO_CHAR(date, 'Month'), EXTRACT(MONTH FROM date)
-ORDER BY EXTRACT(MONTH FROM date);
+GROUP BY EXTRACT(YEAR FROM date), TO_CHAR(date, 'Month'), 
+    EXTRACT(MONTH FROM date)
+ORDER BY EXTRACT(YEAR FROM date), EXTRACT(MONTH FROM date);
 ```
 
 ---
-
 <!-- _class: invert -->
 ![bg left:10%](./Images/corona.jpeg)
 
-![image width:1015](./Images/q6.png)
+![image width:1000](./Images/q6.png)
 
 ---
 <!-- _class: invert -->
@@ -155,13 +159,15 @@ Q7. Find most frequent value for confirmed, deaths, recovered each month
 
 ```
 SELECT
+    EXTRACT(YEAR FROM date) AS "Year",
     TO_CHAR(date, 'Month') AS "Month",
     MODE() WITHIN GROUP (ORDER BY confirmed) AS "MostFrequentConfirmed",
     MODE() WITHIN GROUP (ORDER BY deaths) AS "MostFrequentDeaths",
     MODE() WITHIN GROUP (ORDER BY recovered) AS "MostFrequentRecovered"
 FROM corona_data
-GROUP BY TO_CHAR(date, 'Month'), EXTRACT(MONTH FROM date)
-ORDER BY EXTRACT(MONTH FROM date);
+GROUP BY EXTRACT(YEAR FROM date), TO_CHAR(date, 'Month'), 
+    EXTRACT(MONTH FROM date)
+ORDER BY EXTRACT(YEAR FROM date), EXTRACT(MONTH FROM date);
 ```
 ---
 <!-- _class: invert -->
@@ -201,7 +207,6 @@ GROUP BY EXTRACT(YEAR FROM date);
 ```
 
 <br>
-<br>
 
 ![image width:1015](./Images/q9.png)
 
@@ -213,19 +218,21 @@ Q10. The total number of case of confirmed, deaths, recovered each month
 
 ```
 SELECT 
+    EXTRACT(YEAR FROM date) AS "Year",
     TO_CHAR(date, 'Month') AS "Month", 
     SUM(confirmed) AS "TotalConfirmedCases/Month",
     SUM(deaths) AS "TotalDeaths/Month", 
     SUM(recovered) AS "TotalRecovery/Month"
 FROM corona_data
-GROUP BY TO_CHAR(date, 'Month'), EXTRACT(MONTH FROM date)
-ORDER BY EXTRACT(MONTH FROM date);
+GROUP BY EXTRACT(YEAR FROM date), TO_CHAR(date, 'Month'), 
+    EXTRACT(MONTH FROM date)
+ORDER BY EXTRACT(YEAR FROM date), EXTRACT(MONTH FROM date);
 ```
 
 ---
-
 <!-- _class: invert -->
 ![bg left:10%](./Images/corona.jpeg)
+
 ![image width:1015](./Images/q10.png)
 
 ---
@@ -255,14 +262,22 @@ Q12. Check how corona virus spread out with respect to death case per month (Eg.
 
 ```
 SELECT 
-    ROUND(SUM(deaths), 2) AS "TotalDeaths", 
+    EXTRACT(YEAR FROM date) AS "Year",
+    TO_CHAR(date, 'Month') AS "Month",
+    COUNT(deaths) AS "TotalDeaths", 
     ROUND(AVG(deaths), 2) AS "AvgDeaths",
-    ROUND(VARIANCE(deaths), 2) AS "DeathsVar", 
+    ROUND(VARIANCE(deaths), 2) AS "DeathsVar",  
     ROUND(STDDEV(deaths), 2) AS "DeathsSpread"
-FROM corona_data;
+FROM corona_data
+GROUP BY EXTRACT(YEAR FROM date), TO_CHAR(date, 'Month'), 
+    EXTRACT(MONTH FROM date)
+ORDER BY EXTRACT(YEAR FROM date), EXTRACT(MONTH FROM date);
 ```
+---
+<!-- _class: invert -->
+![bg left:10%](./Images/corona.jpeg)
 
-![image width:1015](./Images/q12.png)
+![image width:900](./Images/q12.png)
 
 ---
 <!-- _class: invert -->
@@ -286,14 +301,22 @@ FROM corona_data;
 ![bg left:10%](./Images/corona.jpeg)
 
 Q14. Find Country having highest number of the Confirmed case
-
+<br>
 ```
-SELECT countryregion, MAX(confirmed) AS "MaxConfirmedCases"
-FROM corona_data
-GROUP BY countryregion, confirmed
-ORDER BY confirmed DESC
+SELECT countryregion, MAX(TotalConfirmed) AS "MaxConfirmed"
+FROM (
+    SELECT countryregion, SUM(confirmed) AS TotalConfirmed
+    FROM corona_data
+    GROUP BY countryregion
+    ) AS DeathPerCountry
+GROUP BY countryregion
+ORDER BY "MaxConfirmed" DESC
 LIMIT 1;
 ```
+
+---
+<!-- _class: invert -->
+![bg left:10%](./Images/corona.jpeg)
 
 ![image width:1015](./Images/q14.png)
 
@@ -303,13 +326,24 @@ LIMIT 1;
 
 Q15. Find Country having lowest number of the death case
 
+<br>
+
 ```
-SELECT countryregion, MIN(deaths) AS "MinDeath"
-FROM corona_data
-GROUP BY countryregion, deaths
-ORDER BY deaths
-LIMIT 1;
+SELECT countryregion, MIN(TotalDeaths) AS "MinDeath"
+FROM (
+    SELECT countryregion, SUM(deaths) AS TotalDeaths
+    FROM corona_data
+    GROUP BY countryregion
+    ) AS DeathPerCountry
+GROUP BY countryregion
+ORDER BY "MinDeath"
+LIMIT 4;
 ```
+
+---
+
+<!-- _class: invert -->
+![bg left:10%](./Images/corona.jpeg)
 
 ![image width:1015](./Images/q15.png)
 
@@ -318,13 +352,49 @@ LIMIT 1;
 ![bg left:10%](./Images/corona.jpeg)
 
 Q16. Find top 5 countries having highest recovered case
-
+<br>
 ```
-SELECT countryregion, MAX(recovered) AS highest_recovered
-FROM corona_data
+SELECT countryregion, MAX(TotalRecovered) AS "MaxRecovered"
+FROM (
+    SELECT countryregion, SUM(recovered) AS TotalRecovered
+    FROM corona_data
+    GROUP BY countryregion
+    ) AS DeathPerCountry
 GROUP BY countryregion
-ORDER BY highest_recovered DESC
+ORDER BY "MaxRecovered" DESC
 LIMIT 5;
 ```
 
-![image width:1015 height:350](./Images/q16.png)
+---
+<!-- _class: invert -->
+![bg left:10%](./Images/corona.jpeg)
+
+![image width:1015](./Images/q16.png)
+
+---
+<!-- _class: invert -->
+![bg left:10%](./Images/corona.jpeg)
+
+### **INFERENCE**
+
+- The CORONA VIRUS dataset contains no null values (query 1 and 2).
+- There are a total of 78386 datapoints in the dataset (query 3).
+- The datapoints in this dataset is collected between the 22nd of January 2020 and 13th of June 2021. This is a period of 18 months (query 4 and 5).
+- Queries 6, 7 and 10 presents the average, most frequent and total number of cases values of the _Confirmed_, _Deaths_ and _Recovered_ on a monthly basis respectively.
+
+---
+<!-- _class: invert -->
+![bg left:10%](./Images/corona.jpeg)
+
+- Queries 8 and 9 shows the minimum and maximum values for the _Confirmed_, _Deaths_ and _Recovered_ on a yearly basis respectively.
+- Queries 11, 12 and 13 shows some statistical operations being performed on the _Confirmed_, _Deaths_ and _Recovered_ fields.
+- The _US_ has the most number of confirmed COVID cases, with 33461892 recorded cases (query 14).
+- _Marshall Islands_, _Kiribati_, _Dominica_ and _Samoa_, had 0 record of COVID related death (query 15).
+- Query 16 shows that _India_ tops the list of countries with most recoveries, followed _Brazil_, _US_, _Turkey_, _Russia_.
+
+---
+<!-- _class: invert -->
+![bg left:10%](./Images/corona.jpeg)
+<br>
+<br>
+# **THANK YOU, PLEASE GIVE A REVIEW**
