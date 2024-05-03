@@ -1,6 +1,10 @@
 -- Q15. Find Country having lowest number of the death case
-SELECT countryregion, MIN(deaths) AS "MinDeath"
-FROM corona_data
-GROUP BY countryregion, deaths
-ORDER BY deaths
-LIMIT 1;
+SELECT countryregion, MIN(TotalDeaths) AS "MinDeath"
+FROM (
+    SELECT countryregion, SUM(deaths) AS TotalDeaths
+    FROM corona_data
+    GROUP BY countryregion
+    ) AS DeathPerCountry
+GROUP BY countryregion
+ORDER BY "MinDeath"
+LIMIT 4;
