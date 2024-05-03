@@ -22,7 +22,7 @@ paginate: true
 
 The **CORONA VIRUS** pandemic has had a significant impact on public health and has created an urgent need for data-driven insights to understand the spread of the virus. 
 
-For this task, I will be analyzing the **CORONA VIRUS** dataset to find answers by writing **SQl (PostgreSQL)** queries, derive meaningful insights and present my findings.
+For this task, I will be analyzing the **CORONA VIRUS** dataset to find answers by writing **SQL (PostgreSQL)** queries, derive meaningful insights and present my findings.
 
 ---
 <!-- _class: invert -->
