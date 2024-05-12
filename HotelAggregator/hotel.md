@@ -4,15 +4,15 @@ theme: gaia
 paginate: true
 ---
 <!-- _class: invert -->
-# **HOTEL AGGREGATOR <br> ANALYSIS IN <br>POWER BI**
-<br>
+![bg right:60%](./Images/hotel.jpeg)
+### **HOTEL AGGREGATOR <br> ANALYSIS IN <br>POWER BI**
 <br>
 <br>
 <br>
 <br>
 <br>
 
-### BY ADURAGBEMI OYINLOLA
+#### BY ADURAGBEMI OYINLOLA
 
 ---
 <!-- _class: invert -->
@@ -46,7 +46,20 @@ This internship project aims to analyse a dataset of hotel aggregator listings u
     - Explore trends in the popularity of specific accommodation setups.
 
 ---
-<!-- _class: invert -->
+
+![bg ](./Images/pic1.png)
+
+---
+![bg ](./Images/pic2.png)
 
 ---
 
+![bg ](./Images/pic3.png)
+
+---
+
+![bg ](./Images/pic4.png)
+
+---
+
+![bg ](./Images/pic5.png)
