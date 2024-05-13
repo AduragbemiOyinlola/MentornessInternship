@@ -5,7 +5,7 @@ paginate: true
 ---
 <!-- _class: invert -->
 ![bg right:60%](./Images/hotel.jpeg)
-### **HOTEL AGGREGATOR <br> ANALYSIS IN <br>POWER BI**
+## **HOTEL AGGREGATOR <br> ANALYSIS IN <br>POWER BI**
 <br>
 <br>
 <br>
@@ -46,20 +46,67 @@ This internship project aims to analyse a dataset of hotel aggregator listings u
     - Explore trends in the popularity of specific accommodation setups.
 
 ---
-
 ![bg ](./Images/pic1.png)
+
+---
+<!-- _class: invert -->
+**GEOGRAPHICAL INSIGHTS**
+
+- There are 24 unique countries in the listing provided for this analysis.
+- From the listings provided, 440 unique neighbourhoods are present.
+- Majority of the hotels in the listings provided are concentrated in Australia.
 
 ---
 ![bg ](./Images/pic2.png)
 
 ---
+<!-- _class: invert -->
+**PRICING AND AVAILABILITY ANALYSIS**
 
+For the pricing and availability analysis, I used the data from the year 2022 the purpose of this to help owners make informed decisions for the year 2023.
+
+- There were 852 available properties for the year 2022 for all available locations.
+- A total of $177.25k was the revenue generated in this year.
+- On average the *Entire home/apt* `room type` is more expensive compared to a *Private room*.
+- The minimum cost of renting an *Entire vacation home* is $119, which is the most for `Property Type`.
+
+---
 ![bg ](./Images/pic3.png)
 
 ---
+<!-- _class: invert -->
+**HOST PERFORMANCE**
 
+- The 'non superhost' performed better than the superhost, generating $1.36M of the total $2.43M revenue generated.
+- Hosts who respond to customers `within an hour` generate more income compared to other hosts who respond after an hour.
+- Hosts who respond to customers using the *Email* and *Phone* method generated more income compared to other methods.
+
+---
 ![bg ](./Images/pic4.png)
 
 ---
+<!-- _class: invert -->
+**REVIEW SCORES AND GUEST SATISFACTION**
 
+- Most of the hotels in the listings provided are top rated hotels with majority being 5 star.
+- The average rating of the hotels in the listing is 4.83.
+- On checking in, most of the customers gave a 5 star rating but the average rating in 4.87.
+- The `review by communication` recieved the highest rating with a value of 4.90, this shows that most of the staffs are good at communicating.
+
+---
 ![bg ](./Images/pic5.png)
+
+---
+<!-- _class: invert -->
+**PROPERTY TYPE AND ROOM ANALYSIS**
+
+- There are 10.53k properties in the dataset, 3 unique room type.
+- The `Entire room/apt` room type generated more income compared to other room types.
+- While the `Entire rental unit` property type generated more income compared to other property types.
+
+<br>
+Note: All visuals shown in this presentation was done without using any filter.
+
+--- 
+<!-- _class: invert -->
+# THANK YOU
